@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 import base64
-from pathlib import Path
 from database import *
 from sentiment import analyze_sentiment
 from auth import login
@@ -15,11 +14,7 @@ create_tables()
 # BACKGROUND FUNCTION
 # =========================
 def set_bg(image_file):
-    image_path = Path(__file__).resolve().parent / image_file
-    if not image_path.exists():
-        return
-
-    with open(image_path, "rb") as f:
+    with open(image_file, "rb") as f:
         encoded = base64.b64encode(f.read()).decode()
 
     st.markdown(
